@@ -29,3 +29,12 @@ body
     width: 70%;
 }
 
+.btn-outline-success
+{
+    border: 1px solid green!important;
+}
+
+.btn-outline-danger 
+{
+    border: 1px solid red!important;
+}

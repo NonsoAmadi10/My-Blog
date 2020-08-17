@@ -4,7 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .forms import SignUpForm, LoginForm
 
 
@@ -40,3 +40,9 @@ def login_user(request):
         form = LoginForm()
 
         return render(request, 'login.html', {'form': form})
+
+
+def log_out(request):
+    logout(request)
+    messages.info(request, 'You have been logged out!')
+    return redirect('login')
