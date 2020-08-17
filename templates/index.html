@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto col-md-8 col-md-10">
+                <div class="site-heading">
+                    <h3 class="my-4 mt-3 text-white site-heading"> Welcome to the Nonso <span
+                            class='text-danger'>Amadi</span> Blog </h3>
+                    <p class="text-light"> Software Engineer | Writer | Entrepeneur | Foodie | Martian &nbsp
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Blog Entries Column -->
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        {% for post in post_list %}
+        <div class="mb-4 card">
+            <div class="w-100">
+                <img src="{{ post.cover_image.url }}" alt="image" width="100%" height="50%">
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                <p class="card-text">{{post.content|slice:":200" }}</p>
+                <a href="{% url 'post_detail' post.slug  %}" class="btn btn-outline-danger">Read More &rarr;</a>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% if is_paginated %}
+<nav aria-label="Page navigation conatiner"></nav>
+<ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="text-white page-link bg-dark">&laquo; PREV </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="text-white page-link bg-dark"> NEXT &raquo;</a></li>
+
+    {% endif %}
+</ul>
+</nav>
+</div>
+{% endif %}
+
+{% endblock content %}
