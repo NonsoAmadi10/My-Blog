@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static '/css/index.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <title>Welcome to My Blog</title>
+    <title>{% block title %}{% endblock title %}</title>
 </head>
 
 <body>
@@ -31,14 +31,21 @@
                         <a class="text-white nav-link font-weight-lighter" href="#"> Login </a>
                     </li>
                     <li class="mr-2 text-white nav-item">
-                        <a class="text-white btn-default btn-danger nav-link font-weight-lighter" href="#">
+                        <a class="text-white btn-default btn-danger nav-link font-weight-lighter" href="/auth/register">
                             Register </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    {% if messages %}
+    <ul class="messages list-group  m-3 " role="alert">
+        {% for message in messages %}
+        <li{% if message.tags %} class="alert {{ message.tags }}" {% endif %}>{{ message }}</li>
 
+            {% endfor %}
+    </ul>
+    {% endif %}
     {% block content %}
     <!-- Content Goes here -->
     {% endblock content %}
