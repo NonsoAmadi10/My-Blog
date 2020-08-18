@@ -29,7 +29,8 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="mr-2 text-white nav-item">
-                        <a class="text-white nav-link font-weight-lighter rounded btn-success" href="#"> New Post </a>
+                        <a class="text-white nav-link font-weight-lighter rounded btn-success" href="/create/"> New Post
+                        </a>
                     </li>
                     <li class="mr-2 text-white nav-item">
                         <a class="text-white btn-default text-danger  nav-link" href="{% url 'logout' %}"
